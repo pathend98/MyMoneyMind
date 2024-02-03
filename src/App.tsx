@@ -1,6 +1,6 @@
 import { AccountSummary } from "src/account-summary/AccountSummary";
 
-const App = () => {
+const App = (): JSX.Element => {
   return (
     <main>
       <AccountSummary />
