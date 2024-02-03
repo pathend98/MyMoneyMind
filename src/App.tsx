@@ -1,7 +1,9 @@
+import { AccountSummary } from "src/account-summary/AccountSummary";
+
 const App = () => {
   return (
     <main>
-      <h1>My Money Mind</h1>
+      <AccountSummary />
     </main>
   );
 };
