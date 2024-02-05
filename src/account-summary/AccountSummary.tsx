@@ -1,6 +1,6 @@
 import { BillSummary } from "@/bill/BillSummary";
 import { CreditSummary } from "@/credit/CreditSummary";
-import { DebitSummary } from "@/debit/DebitSummary";
+import { DebitSummary } from "@/debit";
 import { DepositSummary } from "@/deposit/DepositSummary";
 import { IncomeSummary } from "@/income/IncomeSumary";
 
