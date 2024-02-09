@@ -49,26 +49,30 @@ const CreditSummary = (): JSX.Element => {
 
   // Can find a better way to do this - map date of payment to a paid field, then group by paid
   const paid = credits.filter((credit) => credit.dateOfPayment !== null);
-  const unpaid = credits.filter((credit) => credit.dateOfPayment === null);
+  const outstanding = credits.filter((credit) => credit.dateOfPayment === null);
 
   const totalPaid = paid.reduce((total, credit) => total + credit.value, 0);
-  const totalUnpaid = unpaid.reduce((total, credit) => total + credit.value, 0);
-  const total = totalPaid + totalUnpaid;
+  const totalOutstanding = outstanding.reduce(
+    (total, credit) => total + credit.value,
+    0,
+  );
+  const total = totalPaid + totalOutstanding;
 
-  // Consider tidying Record<string, {paid: number; unpaid: number}>
+  // Consider tidying Record<string, {paid: number; outstanding: number}>
   const categoryTotals = credits.reduce(
     (
-      currentTotals: Record<string, { paid: number; unpaid: number }>,
+      currentTotals: Record<string, { paid: number; outstanding: number }>,
       credit: Credit,
     ) => {
       if (!(credit.category in currentTotals)) {
         currentTotals[credit.category] = {
           paid: 0,
-          unpaid: 0,
+          outstanding: 0,
         };
       }
 
-      const creditStatus = credit.dateOfPayment === null ? "unpaid" : "paid";
+      const creditStatus =
+        credit.dateOfPayment === null ? "outstanding" : "paid";
 
       currentTotals[credit.category][creditStatus] += credit.value;
       return currentTotals;
@@ -92,12 +96,12 @@ const CreditSummary = (): JSX.Element => {
           {Object.entries(categoryTotals).map(
             ([category, totals]: [
               string,
-              { paid: number; unpaid: number },
+              { paid: number; outstanding: number },
             ]) => (
               <tr key={category}>
                 <td>{category}</td>
                 <td>{totals.paid}</td>
-                <td>{totals.unpaid}</td>
+                <td>{totals.outstanding}</td>
               </tr>
             ),
           )}
@@ -112,7 +116,7 @@ const CreditSummary = (): JSX.Element => {
           <tr>
             <td></td>
             <td>Total Outstanding:</td>
-            <td>{totalUnpaid}</td>
+            <td>{totalOutstanding}</td>
           </tr>
           <tr>
             <td></td>
