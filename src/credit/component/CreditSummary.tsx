@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Credit } from "../model/Credit";
 
-const cs: Credit[] = [
+const cs = [
   {
     id: "5eeb7ee1-5fe0-49ee-af46-f0a862cc892b",
     name: "Supermarket",
@@ -42,7 +42,12 @@ const cs: Credit[] = [
     date: new Date(),
     dateOfPayment: new Date(),
   },
-];
+] satisfies Credit[];
+
+interface CategorySummary {
+  paid: number;
+  outstanding: number;
+}
 
 const CreditSummary = (): JSX.Element => {
   const [credits] = useState<Credit[]>(cs);
@@ -58,12 +63,8 @@ const CreditSummary = (): JSX.Element => {
   );
   const total = totalPaid + totalOutstanding;
 
-  // Consider tidying Record<string, {paid: number; outstanding: number}>
   const categoryTotals = credits.reduce(
-    (
-      currentTotals: Record<string, { paid: number; outstanding: number }>,
-      credit: Credit,
-    ) => {
+    (currentTotals: Record<string, CategorySummary>, credit: Credit) => {
       if (!(credit.category in currentTotals)) {
         currentTotals[credit.category] = {
           paid: 0,
@@ -94,14 +95,11 @@ const CreditSummary = (): JSX.Element => {
 
         <tbody>
           {Object.entries(categoryTotals).map(
-            ([category, totals]: [
-              string,
-              { paid: number; outstanding: number },
-            ]) => (
-              <tr key={category}>
+            ([category, totals]: [string, CategorySummary]) => (
+              <tr key={`credit-${category}`}>
                 <td>{category}</td>
-                <td>{totals.paid}</td>
-                <td>{totals.outstanding}</td>
+                <td>{totals.paid.toFixed(2)}</td>
+                <td>{totals.outstanding.toFixed(2)}</td>
               </tr>
             ),
           )}
@@ -111,17 +109,17 @@ const CreditSummary = (): JSX.Element => {
           <tr>
             <td></td>
             <td>Total Paid:</td>
-            <td>{totalPaid}</td>
+            <td>{totalPaid.toFixed(2)}</td>
           </tr>
           <tr>
             <td></td>
             <td>Total Outstanding:</td>
-            <td>{totalOutstanding}</td>
+            <td>{totalOutstanding.toFixed(2)}</td>
           </tr>
           <tr>
             <td></td>
             <td>Total: </td>
-            <td>{total}</td>
+            <td>{total.toFixed(2)}</td>
           </tr>
         </tfoot>
       </table>

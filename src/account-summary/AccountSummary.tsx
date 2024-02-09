@@ -1,4 +1,4 @@
-import { BillSummary } from "@/bill/BillSummary";
+import { BillSummary } from "@/bill";
 import { CreditSummary } from "@/credit";
 import { DebitSummary } from "@/debit";
 import { DepositSummary } from "@/deposit/DepositSummary";

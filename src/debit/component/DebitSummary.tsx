@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Debit } from "../model/Debit";
 
-const ds: Debit[] = [
+const ds = [
   {
     id: "9e744782-541a-4d37-af74-f55b3bb414e5",
     name: "Market",
@@ -30,7 +30,7 @@ const ds: Debit[] = [
     category: "Health",
     date: new Date(),
   },
-];
+] satisfies Debit[];
 
 const DebitSummary = (): JSX.Element => {
   const [debits] = useState<Debit[]>(ds);
@@ -70,10 +70,10 @@ const DebitSummary = (): JSX.Element => {
         <tbody>
           {Object.entries(categoryTotals).map(
             ([category, total]: [string, number]) => (
-              <tr key={category}>
+              <tr key={`debit-${category}`}>
                 <td>{category}</td>
                 <td></td>
-                <td>{total}</td>
+                <td>{total.toFixed(2)}</td>
               </tr>
             ),
           )}
@@ -85,7 +85,7 @@ const DebitSummary = (): JSX.Element => {
           <tr>
             <td></td>
             <td>Total: </td>
-            <td>{totalPrice}</td>
+            <td>{totalPrice.toFixed(2)}</td>
           </tr>
         </tfoot>
       </table>

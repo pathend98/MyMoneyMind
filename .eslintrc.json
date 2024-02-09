@@ -16,6 +16,7 @@
   "plugins": ["@typescript-eslint", "react"],
   "rules": {
     "indent": ["error", 4],
+    "max-len": ["warn", { "code": 100 }],
     "linebreak-style": ["error", "unix"],
     "quotes": ["error", "double"],
     "semi": ["error", "always"],
