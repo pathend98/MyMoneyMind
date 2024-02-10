@@ -1,4 +1,4 @@
-import { Bill } from "./Bill";
+import type { Bill } from "./Bill";
 
 interface BillPayment {
   id: string;

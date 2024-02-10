@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Debit } from "../model/Debit";
+import type { Debit } from "../model/Debit";
 
 const ds = [
   {

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { BillPayment } from "../model/BillPayment";
+import type { BillPayment } from "../model/BillPayment";
 
 const bs = [
   {
@@ -71,7 +71,7 @@ const BillSummary = (): JSX.Element => {
 
         <tbody>
           {bills.map((bill: BillPayment) => (
-            <tr key={`bill-payment-${bill.bill.name}`}>
+            <tr key={bill.id}>
               <td>{bill.bill.name}</td>
               <td>{bill.paid ? "Yes" : "No"}</td>
               <td>{bill.value.toFixed(2)}</td>

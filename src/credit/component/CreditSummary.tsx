@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Credit } from "../model/Credit";
+import type { Credit } from "../model/Credit";
 
 const cs = [
   {
