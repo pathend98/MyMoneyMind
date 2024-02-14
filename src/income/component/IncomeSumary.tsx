@@ -40,7 +40,7 @@ const IncomeSummary = (): JSX.Element => {
 
   return (
     <>
-      <h2>incomes</h2>
+      <h2>Income</h2>
 
       <table>
         <thead>
