@@ -1,9 +1,9 @@
-import { AccountSummary } from "src/account-summary/AccountSummary";
+import { AccountOverview } from "src/account-overview";
 
 const App = (): JSX.Element => {
   return (
     <main>
-      <AccountSummary />
+      <AccountOverview />
     </main>
   );
 };

@@ -1,13 +1,17 @@
+import { Balance } from "@/balance/component/Balance";
 import { BillSummary } from "@/bill";
 import { CreditSummary } from "@/credit";
 import { DebitSummary } from "@/debit";
 import { DepositSummary } from "@/deposit";
 import { IncomeSummary } from "@/income";
 
-const AccountSummary = (): JSX.Element => {
+const AccountOverview = (): JSX.Element => {
   return (
     <div>
       <h1>Account Summary</h1>
+
+      <Balance />
+
       <DebitSummary />
       <DepositSummary />
 
@@ -19,4 +23,4 @@ const AccountSummary = (): JSX.Element => {
   );
 };
 
-export { AccountSummary };
+export { AccountOverview };
