@@ -11,7 +11,7 @@ const DepositSummary = (): JSX.Element => {
   );
 
   return (
-    <>
+    <section>
       <h2>Deposits</h2>
       <table>
         <thead>
@@ -37,7 +37,7 @@ const DepositSummary = (): JSX.Element => {
           </tr>
         </tfoot>
       </table>
-    </>
+    </section>
   );
 };
 

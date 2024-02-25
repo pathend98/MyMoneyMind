@@ -40,7 +40,7 @@ const CreditSummary = (): JSX.Element => {
   );
 
   return (
-    <>
+    <section>
       <h2>Credit Expenses</h2>
       <table>
         <thead>
@@ -81,7 +81,7 @@ const CreditSummary = (): JSX.Element => {
           </tr>
         </tfoot>
       </table>
-    </>
+    </section>
   );
 };
 

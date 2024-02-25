@@ -16,7 +16,7 @@ const BillSummary = (): JSX.Element => {
   const totalValue = totalPaid + totalOutstanding;
 
   return (
-    <>
+    <section>
       <h2>Bills</h2>
 
       <table>
@@ -56,7 +56,7 @@ const BillSummary = (): JSX.Element => {
           </tr>
         </tfoot>
       </table>
-    </>
+    </section>
   );
 };
 

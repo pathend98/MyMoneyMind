@@ -26,7 +26,7 @@ const DebitSummary = (): JSX.Element => {
   );
 
   return (
-    <>
+    <section>
       <h2>Debit Expenses</h2>
       <table>
         <thead>
@@ -59,7 +59,7 @@ const DebitSummary = (): JSX.Element => {
           </tr>
         </tfoot>
       </table>
-    </>
+    </section>
   );
 };
 

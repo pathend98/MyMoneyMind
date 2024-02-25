@@ -24,7 +24,7 @@ const IncomeSummary = (): JSX.Element => {
   const totalValue = totalPaid + totalOutstanding;
 
   return (
-    <>
+    <section>
       <h2>Income</h2>
 
       <table>
@@ -64,7 +64,7 @@ const IncomeSummary = (): JSX.Element => {
           </tr>
         </tfoot>
       </table>
-    </>
+    </section>
   );
 };
 

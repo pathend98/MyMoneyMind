@@ -56,12 +56,12 @@ const Balance = (): JSX.Element => {
     totalReceivedIncomeValue;
 
   return (
-    <>
+    <section>
       <h2>Balance</h2>
       <p>Starting Balance: {startingBalance}</p>
       <p>Actual Balance: {actualBalance}</p>
       <p>Effective Balance: {effectiveBalance}</p>
-    </>
+    </section>
   );
 };
 

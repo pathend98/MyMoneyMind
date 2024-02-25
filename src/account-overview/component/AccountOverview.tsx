@@ -7,7 +7,7 @@ import { IncomeSummary } from "@/income";
 
 const AccountOverview = (): JSX.Element => {
   return (
-    <div>
+    <main>
       <h1>Account Summary</h1>
 
       <Balance />
@@ -19,7 +19,7 @@ const AccountOverview = (): JSX.Element => {
 
       <IncomeSummary />
       <BillSummary />
-    </div>
+    </main>
   );
 };
 
