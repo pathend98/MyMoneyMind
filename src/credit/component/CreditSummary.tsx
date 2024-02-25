@@ -65,18 +65,15 @@ const CreditSummary = (): JSX.Element => {
 
         <tfoot>
           <tr>
-            <td></td>
-            <td>Total Paid:</td>
+            <td colSpan={2}>Total Paid:</td>
             <td>{totalPaid.toFixed(2)}</td>
           </tr>
           <tr>
-            <td></td>
-            <td>Total Outstanding:</td>
+            <td colSpan={2}>Total Outstanding:</td>
             <td>{totalOutstanding.toFixed(2)}</td>
           </tr>
           <tr>
-            <td></td>
-            <td>Total: </td>
+            <td colSpan={2}>Total:</td>
             <td>{total.toFixed(2)}</td>
           </tr>
         </tfoot>

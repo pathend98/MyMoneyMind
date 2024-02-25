@@ -44,7 +44,7 @@ const Balance = (): JSX.Element => {
     incomes.filter((income) => income.paid),
   );
 
-  const actualBalance =
+  const currentBalance =
     startingBalance -
     (paidBillValue + paidCreditValue + totalDebitValue) +
     totalDepositValue +
@@ -57,10 +57,20 @@ const Balance = (): JSX.Element => {
 
   return (
     <section>
-      <h2>Balance</h2>
-      <p>Starting Balance: {startingBalance}</p>
-      <p>Actual Balance: {actualBalance}</p>
-      <p>Effective Balance: {effectiveBalance}</p>
+      <table>
+        <tr>
+          <td>Starting Balance:</td>
+          <td>{startingBalance}</td>
+        </tr>
+        <tr>
+          <td>Current Balance:</td>
+          <td>{currentBalance}</td>
+        </tr>
+        <tr>
+          <td>Effective Balance:</td>
+          <td>{effectiveBalance}</td>
+        </tr>
+      </table>
     </section>
   );
 };

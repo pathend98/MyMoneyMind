@@ -31,8 +31,7 @@ const DebitSummary = (): JSX.Element => {
       <table>
         <thead>
           <tr>
-            <td>Type</td>
-            <td></td>
+            <td colSpan={2}>Type</td>
             <td>Value</td>
           </tr>
         </thead>
@@ -41,8 +40,7 @@ const DebitSummary = (): JSX.Element => {
           {Object.entries(categoryTotals).map(
             ([category, total]: [string, number]) => (
               <tr key={`debit-${category}`}>
-                <td>{category}</td>
-                <td></td>
+                <td colSpan={2}>{category}</td>
                 <td>{total.toFixed(2)}</td>
               </tr>
             ),
@@ -50,11 +48,8 @@ const DebitSummary = (): JSX.Element => {
         </tbody>
 
         <tfoot>
-          <tr></tr>
-          <tr></tr>
           <tr>
-            <td></td>
-            <td>Total: </td>
+            <td colSpan={2}>Total:</td>
             <td>{totalPrice.toFixed(2)}</td>
           </tr>
         </tfoot>
