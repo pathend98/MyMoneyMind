@@ -1,3 +1,4 @@
+import { create } from "zustand";
 import type { Credit } from "../model/Credit";
 
 const credits = [
@@ -43,4 +44,12 @@ const credits = [
   },
 ] satisfies Credit[];
 
-export { credits };
+interface CreditStore {
+  credits: Credit[];
+}
+
+const useCreditStore = create<CreditStore>()(() => ({
+  credits,
+}));
+
+export { useCreditStore };

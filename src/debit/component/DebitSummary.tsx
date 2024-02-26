@@ -2,7 +2,7 @@ import type { Debit } from "../model/Debit";
 import { useDebitStore } from "../store/debitStore";
 
 const DebitSummary = (): JSX.Element => {
-  const debits = useDebitStore((state) => state.debits);
+  const debits = useDebitStore((store) => store.debits);
 
   const categoryTotals: Record<string, number> = debits.reduce(
     (totals: Record<string, number>, debit: Debit) => {

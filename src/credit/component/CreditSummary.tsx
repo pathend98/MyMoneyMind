@@ -1,6 +1,5 @@
-import { useState } from "react";
-import { credits as cs } from "../data/creditData";
 import type { Credit } from "../model/Credit";
+import { useCreditStore } from "../store/creditStore";
 
 interface CategorySummary {
   paid: number;
@@ -8,7 +7,7 @@ interface CategorySummary {
 }
 
 const CreditSummary = (): JSX.Element => {
-  const [credits] = useState<Credit[]>(cs);
+  const credits = useCreditStore((store) => store.credits);
 
   // Can find a better way to do this - map date of payment to a paid field, then group by paid
   const paid = credits.filter((credit) => credit.dateOfPayment !== null);

@@ -1,8 +1,6 @@
 import { useState } from "react";
 
 import { billPayments as bs } from "@/bill/data/billData";
-import { credits as cs } from "@/credit/data/creditData";
-import { debits as ds } from "@/debit/data/debitData";
 import { deposits as des } from "@/deposit/data/depositData";
 import { incomes as is } from "@/income/data/incomeData";
 import { startingBalance as start } from "../data/balanceData";
@@ -12,6 +10,8 @@ import type { Credit } from "@/credit/model/Credit";
 import type { Debit } from "@/debit/model/Debit";
 import type { Deposit } from "@/deposit/model/Deposit";
 import type { IncomePayment } from "@/income/model/IncomePayment";
+import { useCreditStore } from "@/credit/store/creditStore";
+import { useDebitStore } from "@/debit/store/debitStore";
 
 type MoneySource = BillPayment | Credit | Debit | Deposit | IncomePayment;
 
@@ -21,8 +21,8 @@ const getMoneySourceTotalValue = (sources: MoneySource[]): number => {
 
 const Balance = (): JSX.Element => {
   const [bills] = useState<BillPayment[]>(bs);
-  const [credits] = useState<Credit[]>(cs);
-  const [debits] = useState<Debit[]>(ds);
+  const credits = useCreditStore((store) => store.credits);
+  const debits = useDebitStore((store) => store.debits);
   const [deposits] = useState<Deposit[]>(des);
   const [incomes] = useState<IncomePayment[]>(is);
   const [startingBalance] = useState<number>(start);
