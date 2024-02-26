@@ -1,9 +1,8 @@
-import { useState } from "react";
-import { billPayments as bs } from "../data/billData";
 import type { BillPayment } from "../model/BillPayment";
+import { useBillStore } from "../store/billStore";
 
 const BillSummary = (): JSX.Element => {
-  const [bills] = useState<BillPayment[]>(bs);
+  const bills = useBillStore((state) => state.billPayments);
 
   const totalPaid = bills
     .filter((bill) => bill.paid)

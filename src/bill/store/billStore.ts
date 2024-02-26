@@ -1,3 +1,4 @@
+import { create } from "zustand";
 import type { BillPayment } from "../model/BillPayment";
 
 const billPayments = [
@@ -42,4 +43,12 @@ const billPayments = [
   },
 ] satisfies BillPayment[];
 
-export { billPayments };
+interface BillStore {
+  billPayments: BillPayment[];
+}
+
+const useBillStore = create<BillStore>()(() => ({
+  billPayments,
+}));
+
+export { useBillStore };
