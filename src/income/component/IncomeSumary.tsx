@@ -1,9 +1,8 @@
-import { useState } from "react";
-import { incomes as is } from "../data/incomeData";
 import type { IncomePayment } from "../model/IncomePayment";
+import { useIncomeStore } from "../store/incomeStore";
 
 const IncomeSummary = (): JSX.Element => {
-  const [incomes] = useState<IncomePayment[]>(is);
+  const incomes = useIncomeStore((store) => store.incomes);
 
   // This component is very similar in nature to the Bill Summary. It could be worth looking into methods to reduce duplication.
 

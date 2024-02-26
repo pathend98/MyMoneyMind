@@ -1,3 +1,4 @@
+import { create } from "zustand";
 import type { IncomePayment } from "../model/IncomePayment";
 
 const incomes = [
@@ -16,4 +17,12 @@ const incomes = [
   },
 ] satisfies IncomePayment[];
 
-export { incomes };
+interface IncomeStore {
+  incomes: IncomePayment[];
+}
+
+const useIncomeStore = create<IncomeStore>()(() => ({
+  incomes,
+}));
+
+export { useIncomeStore };
