@@ -1,3 +1,4 @@
+import { create } from "zustand";
 import type { Deposit } from "../model/Deposit";
 
 const deposits = [
@@ -15,4 +16,12 @@ const deposits = [
   },
 ] satisfies Deposit[];
 
-export { deposits };
+interface DepositStore {
+  deposits: Deposit[];
+}
+
+const useDepositStore = create<DepositStore>()(() => ({
+  deposits,
+}));
+
+export { useDepositStore };

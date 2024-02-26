@@ -1,9 +1,8 @@
-import { useState } from "react";
-import { deposits as ds } from "../data/depositData";
 import type { Deposit } from "../model/Deposit";
+import { useDepositStore } from "../store/depositStore";
 
 const DepositSummary = (): JSX.Element => {
-  const [deposits] = useState<Deposit[]>(ds);
+  const deposits = useDepositStore((store) => store.deposits);
 
   const total = deposits.reduce(
     (total: number, deposit: Deposit) => total + deposit.value,
