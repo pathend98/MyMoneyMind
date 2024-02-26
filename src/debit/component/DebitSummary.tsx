@@ -1,9 +1,8 @@
-import { useState } from "react";
-import { debits as ds } from "../data/debitData";
 import type { Debit } from "../model/Debit";
+import { useDebitStore } from "../store/debitStore";
 
 const DebitSummary = (): JSX.Element => {
-  const [debits] = useState<Debit[]>(ds);
+  const debits = useDebitStore((state) => state.debits);
 
   const categoryTotals: Record<string, number> = debits.reduce(
     (totals: Record<string, number>, debit: Debit) => {
