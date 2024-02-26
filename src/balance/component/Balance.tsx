@@ -1,7 +1,3 @@
-import { useState } from "react";
-
-import { startingBalance as start } from "../data/balanceData";
-
 import type { BillPayment } from "@/bill/model/BillPayment";
 import type { Credit } from "@/credit/model/Credit";
 import type { Debit } from "@/debit/model/Debit";
@@ -12,6 +8,7 @@ import { useDebitStore } from "@/debit/store/debitStore";
 import { useBillStore } from "@/bill/store/billStore";
 import { useDepositStore } from "@/deposit/store/depositStore";
 import { useIncomeStore } from "@/income/store/incomeStore";
+import { useBalanceStore } from "../store/balanceStore";
 
 type MoneySource = BillPayment | Credit | Debit | Deposit | IncomePayment;
 
@@ -25,7 +22,7 @@ const Balance = (): JSX.Element => {
   const debits = useDebitStore((store) => store.debits);
   const deposits = useDepositStore((store) => store.deposits);
   const incomes = useIncomeStore((store) => store.incomes);
-  const [startingBalance] = useState<number>(start);
+  const startingBalance = useBalanceStore((store) => store.startingBalance);
 
   const totalBillValue = getMoneySourceTotalValue(bills);
   const paidBillValue = getMoneySourceTotalValue(
