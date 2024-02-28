@@ -55,18 +55,20 @@ const Balance = (): JSX.Element => {
   return (
     <section>
       <table>
-        <tr>
-          <td>Starting Balance:</td>
-          <td>{startingBalance}</td>
-        </tr>
-        <tr>
-          <td>Current Balance:</td>
-          <td>{currentBalance}</td>
-        </tr>
-        <tr>
-          <td>Effective Balance:</td>
-          <td>{effectiveBalance}</td>
-        </tr>
+        <tbody>
+          <tr>
+            <td>Starting Balance:</td>
+            <td>{startingBalance}</td>
+          </tr>
+          <tr>
+            <td>Current Balance:</td>
+            <td>{currentBalance}</td>
+          </tr>
+          <tr>
+            <td>Effective Balance:</td>
+            <td>{effectiveBalance}</td>
+          </tr>
+        </tbody>
       </table>
     </section>
   );
