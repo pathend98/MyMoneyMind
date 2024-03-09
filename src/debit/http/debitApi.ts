@@ -1,9 +1,6 @@
-export const getDebits = async () => {
-  const query = {
-    startDate: "2024-01-05",
-    endDate: "2024-01-15",
-  };
+import { Debit } from "../model/Debit";
 
+export const getDebits = async (query: DebitQuery): Promise<Debit[]> => {
   const response = await fetch(
     "http://localhost:8080/money-service/debit/query",
     {
@@ -17,5 +14,5 @@ export const getDebits = async () => {
     },
   );
 
-  console.log(response.json());
+  return await response.json();
 };

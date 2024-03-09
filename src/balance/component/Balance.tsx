@@ -58,15 +58,15 @@ const Balance = (): JSX.Element => {
         <tbody>
           <tr>
             <td>Starting Balance:</td>
-            <td>{startingBalance}</td>
+            <td>{startingBalance.toFixed(2)}</td>
           </tr>
           <tr>
             <td>Current Balance:</td>
-            <td>{currentBalance}</td>
+            <td>{currentBalance.toFixed(2)}</td>
           </tr>
           <tr>
             <td>Effective Balance:</td>
-            <td>{effectiveBalance}</td>
+            <td>{effectiveBalance.toFixed(2)}</td>
           </tr>
         </tbody>
       </table>

@@ -1,10 +1,13 @@
-import { getDebits } from "../http/debitApi";
 import type { Debit } from "../model/Debit";
 import { useDebitStore } from "../store/debitStore";
 
 const DebitSummary = (): JSX.Element => {
-  getDebits();
   const debits = useDebitStore((store) => store.debits);
+  //   const getDebits = useDebitStore(store => store.fetch);
+
+  // useEffect(() => {
+  //   getDebits();
+  // }, []);
 
   const categoryTotals: Record<string, number> = debits.reduce(
     (totals: Record<string, number>, debit: Debit) => {
