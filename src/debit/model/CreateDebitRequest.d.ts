@@ -1,3 +1,3 @@
 import type { Debit } from "./Debit";
 
-type CreateDebitRequest = Omit<Debit, "id">;
+export type CreateDebitRequest = Omit<Debit, "id">;

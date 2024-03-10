@@ -1,9 +1,9 @@
-import type { Debit } from "../model/Debit";
-import type { DebitQuery } from "../model/DebitQuery";
+import type { CreditQuery } from "../model/CreditQuery";
+import type { Credit } from "../model/Credit";
 
-export const getDebits = async (query: DebitQuery): Promise<Debit[]> => {
+export const getCredits = async (query: CreditQuery): Promise<Credit[]> => {
   const response = await fetch(
-    "http://localhost:8080/money-service/debit/query",
+    "http://localhost:8080/money-service/credit/query",
     {
       method: "POST",
       mode: "cors",

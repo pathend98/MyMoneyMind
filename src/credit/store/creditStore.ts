@@ -1,55 +1,35 @@
-import { create } from "zustand";
 import type { Credit } from "../model/Credit";
-
-const credits = [
-  {
-    id: "5eeb7ee1-5fe0-49ee-af46-f0a862cc892b",
-    name: "Supermarket",
-    value: 12.01,
-    category: "Groceries",
-    date: new Date(),
-    dateOfPayment: null,
-  },
-  {
-    id: "91c195a9-77e4-4d62-949e-5a7d58e40476",
-    name: "Flights",
-    value: 201.77,
-    category: "Travel",
-    date: new Date(),
-    dateOfPayment: new Date(),
-  },
-  {
-    id: "0ffc1d9c-eb28-4434-a380-93616535872c",
-    name: "Hotel",
-    value: 400.2,
-    category: "Travel",
-    date: new Date(),
-    dateOfPayment: null,
-  },
-  {
-    id: "f8fdbb97-7747-4e52-8ae0-2e69449edd05",
-    name: "Taxi",
-    value: 24.0,
-    category: "Travel",
-    date: new Date(),
-    dateOfPayment: new Date(),
-  },
-  {
-    id: "4209d380-2a61-46b0-b99a-ddfe13b3c897",
-    name: "Shopping",
-    value: 110.0,
-    category: "Clothing",
-    date: new Date(),
-    dateOfPayment: new Date(),
-  },
-] satisfies Credit[];
+import type { CreditQuery } from "../model/CreditQuery";
+import { getCredits } from "../http/creditApi";
+import { create } from "zustand";
 
 interface CreditStore {
   credits: Credit[];
+  write: (credits: Credit[]) => void;
+  clear: () => void;
 }
 
-const useCreditStore = create<CreditStore>()(() => ({
-  credits,
+const query: CreditQuery = {
+  startDate: "2024-03-01",
+  endDate: "2024-03-31",
+  paid: null,
+};
+
+const useCreditStore = create<CreditStore>()((set) => ({
+  credits: [],
+  write: (credits: Credit[]) => {
+    set({ credits });
+  },
+  clear: () => {
+    set({ credits: [] });
+  },
 }));
+
+const populateCredits = async () => {
+  const credits = await getCredits(query);
+  useCreditStore.getState().write(credits);
+};
+
+populateCredits();
 
 export { useCreditStore };

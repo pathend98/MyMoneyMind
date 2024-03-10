@@ -1,11 +1,13 @@
-import { create } from "zustand";
+import type { DebitQuery } from "../model/DebitQuery";
 import type { Debit } from "../model/Debit";
+
+import { create } from "zustand";
 import { getDebits } from "../http/debitApi";
 
 interface DebitStore {
   debits: Debit[];
-  fetch: () => void;
-  clean: () => void;
+  write: (debits: Debit[]) => void;
+  clear: () => void;
 }
 
 const query: DebitQuery = {
@@ -15,25 +17,19 @@ const query: DebitQuery = {
 
 const useDebitStore = create<DebitStore>()((set) => ({
   debits: [],
-  fetch: async () => {
-    const debits = await getDebits(query);
+  write: (debits: Debit[]) => {
     set({ debits });
   },
-  clean: () => {
-    set({
-      debits: [
-        {
-          id: "123",
-          name: "Pharmacy",
-          value: 9.81,
-          category: "Health",
-          date: new Date(),
-        },
-      ],
-    });
+  clear: () => {
+    set({ debits: [] });
   },
 }));
 
-setTimeout(useDebitStore.getState().clean, 10000);
+const populateDebits = async () => {
+  const debits = await getDebits(query);
+  useDebitStore.getState().write(debits);
+};
+
+populateDebits();
 
 export { useDebitStore };
