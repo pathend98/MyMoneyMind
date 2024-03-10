@@ -1,27 +1,30 @@
 import { create } from "zustand";
 import type { Deposit } from "../model/Deposit";
-
-const deposits = [
-  {
-    id: "064669ae-8681-4182-bc3c-5fd26fa7fd5c",
-    name: "Pizza Money",
-    value: 23.98,
-    date: new Date(),
-  },
-  {
-    id: "67cae2de-a154-4a6f-ace5-e600e36c9013",
-    name: "Petrol",
-    value: 4.5,
-    date: new Date(),
-  },
-] satisfies Deposit[];
+import { DepositQuery } from "../model/DepositQuery";
+import { getDeposits } from "../http/depositApi";
 
 interface DepositStore {
   deposits: Deposit[];
+  write: (deposits: Deposit[]) => void;
+  clear: () => void;
 }
 
-const useDepositStore = create<DepositStore>()(() => ({
-  deposits,
+const query: DepositQuery = {
+  startDate: "2024-03-01",
+  endDate: "2024-03-31",
+};
+
+const useDepositStore = create<DepositStore>()((set) => ({
+  deposits: [],
+  write: (deposits: Deposit[]) => set({ deposits }),
+  clear: () => set({ deposits: [] }),
 }));
+
+const populateDeposits = async () => {
+  const deposits = await getDeposits(query);
+  useDepositStore.getState().write(deposits);
+};
+
+populateDeposits();
 
 export { useDepositStore };

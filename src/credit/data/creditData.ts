@@ -1,4 +1,6 @@
-import type { CreateCreditRequest } from "../model/CreateCreditRequest";
+import type { NewCredit } from "../model/NewCredit";
+
+import { upsertCredit } from "../http/creditApi";
 
 const credits = [
   {
@@ -36,18 +38,8 @@ const credits = [
     date: new Date(),
     dateOfPayment: new Date(),
   },
-] satisfies CreateCreditRequest[];
+] satisfies NewCredit[];
 
-credits.forEach(async (credit) => {
-  await fetch("http://localhost:8080/money-service/credit", {
-    method: "PUT",
-    mode: "cors",
-    headers: {
-      "Content-Type": "application/json",
-      Accept: "application/json",
-    },
-    body: JSON.stringify(credit),
-  });
-
-  console.log("done");
+credits.forEach((credit) => {
+  upsertCredit(credit);
 });

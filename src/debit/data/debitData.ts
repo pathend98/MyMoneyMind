@@ -1,4 +1,6 @@
-import type { CreateDebitRequest } from "../model/CreateDebitRequest";
+import type { NewDebit } from "../model/NewDebit";
+
+import { upsertDebit } from "../http/debitApi";
 
 const debits = [
   {
@@ -25,16 +27,6 @@ const debits = [
     category: "Health",
     date: new Date(),
   },
-] satisfies CreateDebitRequest[];
+] satisfies NewDebit[];
 
-debits.forEach(async (debit) => {
-  await fetch("http://localhost:8080/money-service/debit", {
-    method: "PUT",
-    mode: "cors",
-    headers: {
-      "Content-Type": "application/json",
-      Accept: "application/json",
-    },
-    body: JSON.stringify(debit),
-  });
-});
+debits.forEach((debit) => upsertDebit(debit));

@@ -1,10 +1,10 @@
-import type { CreditQuery } from "../model/CreditQuery";
-import type { Credit } from "../model/Credit";
-import type { NewCredit } from "../model/NewCredit";
+import type { Deposit } from "../model/Deposit";
+import type { NewDeposit } from "../model/NewDeposit";
+import type { DepositQuery } from "../model/DepositQuery";
 
-export const getCredits = async (query: CreditQuery): Promise<Credit[]> => {
+export const getDeposits = async (query: DepositQuery): Promise<Deposit[]> => {
   const response = await fetch(
-    "http://localhost:8080/money-service/credit/query",
+    "http://localhost:8080/money-service/deposit/query",
     {
       method: "POST",
       mode: "cors",
@@ -19,10 +19,10 @@ export const getCredits = async (query: CreditQuery): Promise<Credit[]> => {
   return await response.json();
 };
 
-export const upsertCredit = async (
-  credit: Credit | NewCredit,
-): Promise<Credit> => {
-  const response = await fetch("http://localhost:8080/money-service/credit", {
+export const upsertDeposit = async (
+  credit: Deposit | NewDeposit,
+): Promise<Deposit> => {
+  const response = await fetch("http://localhost:8080/money-service/deposit", {
     method: "PUT",
     mode: "cors",
     headers: {
