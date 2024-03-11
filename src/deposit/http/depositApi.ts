@@ -20,7 +20,7 @@ export const getDeposits = async (query: DepositQuery): Promise<Deposit[]> => {
 };
 
 export const upsertDeposit = async (
-  credit: Deposit | NewDeposit,
+  deposit: Deposit | NewDeposit,
 ): Promise<Deposit> => {
   const response = await fetch("http://localhost:8080/money-service/deposit", {
     method: "PUT",
@@ -29,7 +29,7 @@ export const upsertDeposit = async (
       "Content-Type": "application/json",
       Accept: "application/json",
     },
-    body: JSON.stringify(credit),
+    body: JSON.stringify(deposit),
   });
 
   return await response.json();
