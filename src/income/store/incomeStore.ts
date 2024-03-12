@@ -1,28 +1,30 @@
-import { create } from "zustand";
 import type { IncomePayment } from "../model/IncomePayment";
-
-const incomes = [
-  {
-    id: "15b91b3e-63a4-403c-8584-1d4e3d965047",
-    income: {
-      id: "3e8cf208-36fb-452a-b7e5-db08d725e965",
-      name: "Salary",
-      value: 3000.0,
-      dayOfMonth: 28,
-      active: true,
-    },
-    value: 3000.0,
-    dateOfPayment: new Date(),
-    paid: true,
-  },
-] satisfies IncomePayment[];
+import { create } from "zustand";
+import { IncomePaymentQuery } from "../model/IncomePaymentQuery";
+import { getIncomePayments } from "../http/incomePaymentApi";
 
 interface IncomeStore {
   incomes: IncomePayment[];
+  write: (incomes: IncomePayment[]) => void;
+  clear: () => void;
 }
 
-const useIncomeStore = create<IncomeStore>()(() => ({
-  incomes,
+const query: IncomePaymentQuery = {
+  startDate: "2024-03-01",
+  endDate: "2024-04-30",
+};
+
+const useIncomeStore = create<IncomeStore>()((set) => ({
+  incomes: [],
+  write: (incomes: IncomePayment[]) => set({ incomes }),
+  clear: () => set({ incomes: [] }),
 }));
+
+const populateIncomes = async () => {
+  const incomes = await getIncomePayments(query);
+  useIncomeStore.getState().write(incomes);
+};
+
+populateIncomes();
 
 export { useIncomeStore };
