@@ -3,11 +3,6 @@ import { useDebitStore } from "../store/debitStore";
 
 const DebitSummary = (): JSX.Element => {
   const debits = useDebitStore((store) => store.debits);
-  //   const getDebits = useDebitStore(store => store.fetch);
-
-  // useEffect(() => {
-  //   getDebits();
-  // }, []);
 
   const categoryTotals: Record<string, number> = debits.reduce(
     (totals: Record<string, number>, debit: Debit) => {

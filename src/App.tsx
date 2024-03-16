@@ -1,9 +1,9 @@
-import { AccountOverview } from "src/account-overview";
+import { Outlet } from "react-router-dom";
 
 const App = (): JSX.Element => {
   return (
     <main>
-      <AccountOverview />
+      <Outlet />
     </main>
   );
 };
