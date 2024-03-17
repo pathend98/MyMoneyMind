@@ -1,4 +1,5 @@
 import type { Debit } from "../model/Debit";
+import { Link } from "react-router-dom";
 import { useDebitStore } from "../store/debitStore";
 
 const DebitSummary = (): JSX.Element => {
@@ -27,6 +28,7 @@ const DebitSummary = (): JSX.Element => {
   return (
     <section>
       <h2>Debit Expenses</h2>
+      <Link to={"debit"}>Full Debit List</Link>
       <table>
         <thead>
           <tr>
