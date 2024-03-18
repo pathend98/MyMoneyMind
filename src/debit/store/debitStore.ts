@@ -2,11 +2,13 @@ import type { DebitQuery } from "../model/DebitQuery";
 import type { Debit } from "../model/Debit";
 
 import { create } from "zustand";
-import { getDebits } from "../http/debitApi";
+import { getDebits, upsertDebit } from "../http/debitApi";
+import { NewDebit } from "../model/NewDebit";
 
 interface DebitStore {
   debits: Debit[];
   write: (debits: Debit[]) => void;
+  addAsync: (debit: NewDebit) => void;
   clear: () => void;
 }
 
@@ -19,6 +21,10 @@ const useDebitStore = create<DebitStore>()((set) => ({
   debits: [],
   write: (debits: Debit[]) => {
     set({ debits });
+  },
+  addAsync: async (debit: NewDebit) => {
+    const newDebit = await upsertDebit(debit);
+    set((state) => ({ debits: [...state.debits, newDebit] }));
   },
   clear: () => {
     set({ debits: [] });
