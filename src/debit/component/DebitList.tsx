@@ -1,7 +1,9 @@
 import type { Debit } from "../model/Debit";
 import { useState } from "react";
 import { useDebitStore } from "../store/debitStore";
-import { NewDebit } from "../model/NewDebit";
+import type { NewDebit } from "../model/NewDebit";
+import { Form } from "@/ui/form/component";
+import { FieldType } from "@/ui/form/model/FieldType";
 
 export const DebitList = (): JSX.Element => {
   const debits = useDebitStore((store) => store.debits);
@@ -75,35 +77,38 @@ export const DebitList = (): JSX.Element => {
         </tfoot>
       </table>
 
-      <form onSubmit={submitAddDebit}>
-        <ul>
-          <li>
-            <label htmlFor="name">Name:</label>
-            <input type="text" id="name" name="name" onChange={setName} />
-          </li>
-          <li>
-            <label htmlFor="value">Value:</label>
-            <input
-              type="number"
-              id="value"
-              name="value"
-              pattern="^\d*(\.\d{0,2})?$"
-              min="0"
-              step="0.01"
-              onChange={setValue}
-            />
-          </li>
-          <li>
-            <label htmlFor="category">Category:</label>
-            <select name="category" id="category" onChange={setCategory}>
-              <option value="Groceries">Groceries</option>
-              <option value="Food / Drink">Food / Drink</option>
-              <option value="Health">Health</option>
-            </select>
-          </li>
-        </ul>
-        <button type="submit">Add</button>
-      </form>
+      <Form
+        onSubmit={submitAddDebit}
+        submitText="Add"
+        fields={[
+          {
+            name: "name",
+            type: FieldType.TEXT,
+            value: newDebit.name,
+            onChange: setName,
+          },
+          {
+            name: "value",
+            type: FieldType.NUMBER,
+            value: newDebit.value,
+            onChange: setValue,
+            min: "0",
+            step: "0.01",
+            pattern: "^\\d*(\\.\\d{0,2})?$",
+          },
+          {
+            name: "category",
+            type: FieldType.SELECT,
+            value: newDebit.category,
+            onChange: setCategory,
+            options: [
+              { label: "Groceries", value: "Groceries" },
+              { label: "Food / Drink", value: "Food / Drink" },
+              { label: "Health", value: "Health" },
+            ],
+          },
+        ]}
+      />
     </>
   );
 };
